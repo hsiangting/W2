@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>JavaScript</title>
+<script type="text/javascript">
+/*要求一*/
+function calculate(min,max){
+	var sum=0;
+	for(var i=min;i<=max;i++){
+		sum=sum+i
+	}
+	console.log(sum)
+}
+calculate(1,3);
+calculate(4,8);
+/*要求二*/
+function avg(data){
+	var sum=0;
+	var x=data.count
+	for (var n=0;n<x;n++){
+		sum+=data.employees[n].salary
+	}
+	console.log(sum/x)
+}
+avg({
+	"count":3,
+	"employees":[
+		{
+			"name":"John","salary":30000
+		},
+		{
+			"name":"Bob","salary":60000
+		},
+		{
+			"name":"Jenny","salary":50000
+		}
+	]
+});
+/*要求三*/
+function maxProduct(nums){
+	var pos_arr=[];
+	var neg_arr=[];
+	for (i=0;i<nums.length;i++){
+		if (nums[i]>=0){
+			pos_arr.push(nums[i])
+		}
+		else if(nums[i]<0){
+			neg_arr.push(nums[i])
+		}
+	}
+	if (pos_arr.length<=1){
+		var min_neg=Math.min.apply(null,neg_arr);
+		for (var i=0;i<neg_arr.length;i++){
+			if(neg_arr[i]==min_neg){
+				neg_arr.splice(i,1);
+				var sec_min_neg=Math.min.apply(null,neg_arr);
+			}
+		}
+		result=min_neg*sec_min_neg
+	}
+	else if(neg_arr.length<=1){
+		for (var i=0;i<pos_arr.length;i++){
+			var max_pos=Math.max.apply(null,pos_arr);
+			for (var i=0;i<pos_arr.length;i++){
+				if(pos_arr[i]==max_pos){
+					pos_arr.splice(i,1);
+					var sec_max_pos=Math.max.apply(null,pos_arr);
+				}
+			}
+		}
+		result=max_pos*sec_max_pos
+	}
+	else{
+		var min_neg=Math.min.apply(null,neg_arr);
+		for (var i=0;i<neg_arr.length;i++){
+			if(neg_arr[i]==min_neg){
+				neg_arr.splice(i,1);
+				var sec_min_neg=Math.min.apply(null,neg_arr);
+			}
+		}
+		result_neg=min_neg*sec_min_neg
+		for (var i=0;i<pos_arr.length;i++){
+			var max_pos=Math.max.apply(null,pos_arr);
+			for (var i=0;i<pos_arr.length;i++){
+				if(pos_arr[i]==max_pos){
+					pos_arr.splice(i,1);
+					var sec_max_pos=Math.max.apply(null,pos_arr);
+				}
+			}
+			result_pos=max_pos*sec_max_pos
+		}	
+		if (result_neg>=result_pos){
+			result=result_neg
+		}
+		else{
+			result=result_pos
+		}
+		}
+	console.log(result)	
+}
+maxProduct([5,20,2,6]);
+maxProduct([10,-20,0,3]);
+/*要求四*/
+function twoSum(nums,target){
+	for (var i=0;i<nums.length;i++){
+		for (var j=i;j<nums.length;j++){
+			if (nums[i]+nums[j]==target){
+				return([i,j])
+			}
+		}
+	}
+}
+result=twoSum([2,11,7,15],9)
+console.log(result)
+/*要求五*/
+function maxZeros(nums){
+	var j=0;
+	var max=0;
+	for (var i=0;i<nums.length;i++){
+		if (nums[i]==0){
+			j++
+		}
+		else{
+			if (j>max){
+				max=j
+			}
+			j=0
+		}
+	if (j>max){
+		max=j
+	}
+	}
+	console.log(max)
+}
+maxZeros([0,1,0,0]);
+maxZeros([1,0,0,0,0,1,0,1,0,0]);
+maxZeros([1,1,1,1,1]);
+</script>
+</head>
+<body>
+</body>
+</html>
