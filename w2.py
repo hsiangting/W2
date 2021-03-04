@@ -16,44 +16,37 @@ def avg(data):
 avg({"count":3,"employees":[{"name":"John","salary":30000},{"name":"Bob","salary":60000},{"name":"Jenny","salary":50000}]})
 #要求三
 def maxProduct(nums):
-    a=[]
-    b=[]
+    pos=[]
+    neg=[]
     for i in nums:
         if i>=0:
-            a.append(i)
+            pos.append(i)
         elif i<0:
-            b.append(i)
-    if len(a)==0:
-        num1=min(b)
-        a.remove(num1)
-        num2=min(b)
-        print(num1*num2)
-    elif len(a)==1:
-            num10=min(b)
-            a.remove(num1)
-            num20=min(b)
-            print(num10*num20)
-    elif len(a)==3:
-        c=max(a)
-        a.remove(c)
-        d=max(a)
-        print(c*d)
-    elif len(a)==4:
-        num_1=max(a)
-        a.remove(num_1)
-        num_2=max(a)
-        print(num_1*num_2)
+            neg.append(i)
+    if len(pos)<=1:
+        min_neg=min(neg)
+        neg.remove(min_neg)
+        sec_min_neg=min(neg)
+        result=min_neg*sec_min_neg
+    elif len(neg)<=1:
+        max_pos=max(pos)
+        pos.remove(max_pos)
+        sec_max_pos=max(pos)
+        result=max_pos*sec_max_pos
     else:
-        ee=max(a)
-        a.remove(ee)
-        rr=max(a)
-        a.remove(rr)
-        j=ee*rr
-        k=b[0]*b[1]
-        if j>k:
-            print(j)
+        min_neg=min(neg)
+        neg.remove(min_neg)
+        sec_min_neg=min(neg)
+        result_neg=min_neg*sec_min_neg
+        max_pos=max(pos)
+        pos.remove(max_pos)
+        sec_max_pos=max(pos)
+        result_pos=max_pos*sec_max_pos
+        if result_neg>=result_pos:
+            result=result_neg
         else:
-            print(k)
+            result=result_pos
+    print(result)    
 maxProduct([5,20,2,6])
 maxProduct([10,-20,0,3])
 #要求四
@@ -78,4 +71,3 @@ def maxZeros(nums):
 maxZeros([0,1,0,0])
 maxZeros([1,0,0,0,0,1,0,1,0,0])
 maxZeros([1,1,1,1,1])
-
