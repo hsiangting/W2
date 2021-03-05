@@ -23,7 +23,9 @@ def maxProduct(nums):
             pos.append(i)
         elif i<0:
             neg.append(i)
-    if len(pos)<=1:
+    if len(pos)==1 and len(neg)==1:
+        result=pos[0]*neg[0]
+    elif len(pos)<=1:
         min_neg=min(neg)
         neg.remove(min_neg)
         sec_min_neg=min(neg)
